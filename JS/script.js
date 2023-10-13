@@ -1,17 +1,26 @@
-let btn = document.querySelector('button');
-let quote = document.querySelector('.phrase');
-
+let domainList = document.getElementById('ulid');
 
 const pronouns = ['The', 'our','my'];
 const adj = ['fenomenal', 'amazing','greatest']
-const names = ['mendez','goat','blackcat','chocolatemc']
+const names = ['mendez','blackcat','chocolatemc']
 
-btn.addEventListener('click', function(){
-    let random = Math.floor(Math.random() * pronouns.length);
-    let random1 = Math.floor(Math.random() * adj.length);
-    let random2 = Math.floor(Math.random() * names.length);
+const domains =[]
+const generate = (pronombre, adjetivo, nombre)=> 'www' + pronombre + adjetivo + nombre +'.com';
 
 
-    quote.innerText = pronouns[random] + adj[random1] + names[random2] + '.com';
+pronouns.forEach((prono)=>{
+    adj.forEach((adjectives)=>{
+        names.forEach((nombres)=>{
+            domains.push(generate(prono,adjectives,nombres))
+        })
+    })
+}
+)
 
-})
+domains.forEach((domain) => {
+    const li = document.createElement('li');
+    li.textContent = domain;
+    domainList.appendChild(li);
+});
+
+
